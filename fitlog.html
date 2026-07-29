@@ -125,11 +125,174 @@ html.present-mode .topbar,
 html.present-mode .progress,
 html.present-mode footer{display:none!important}
 html.present-mode section{
-  display:none;position:fixed;inset:0;height:100vh;width:100vw;
-  padding:88px 0 90px;overflow-y:auto;box-sizing:border-box;
+  display:none;position:fixed;inset:0;width:100vw;
+  height:100vh;height:100dvh;                 /* dvh: barra do navegador no celular */
+  padding:var(--slide-top) 0 var(--slide-bot);
+  overflow-y:auto;overscroll-behavior:contain;box-sizing:border-box;
 }
-html.present-mode section.slide-active{display:flex;flex-direction:column;justify-content:center}
-html.present-mode section .wrap{width:100%;flex-shrink:0}
+html.present-mode section.slide-active{display:flex;flex-direction:column}
+/* margin auto no lugar de justify-content:center — centraliza quando sobra espaço
+   e, quando o conteúdo é maior que a tela, não torna o topo inalcançável. */
+html.present-mode section .wrap{width:100%;flex-shrink:0;margin-block:auto}
+
+/* O slide é limitado pela ALTURA, então tipografia e espaçamentos acompanham a vh. */
+html.present-mode{--slide-top:clamp(26px,5vh,64px);--slide-bot:clamp(64px,9vh,84px)}
+html.present-mode h2{font-size:clamp(1.35rem,3.5vh,2.7rem);margin-bottom:clamp(6px,1.3vh,18px)}
+html.present-mode h3{font-size:clamp(.95rem,2vh,1.28rem)}
+html.present-mode h4{font-size:clamp(.85rem,1.8vh,1rem)}
+html.present-mode .lead{font-size:clamp(.9rem,2vh,1.28rem)}
+html.present-mode .eyebrow{margin-bottom:clamp(7px,1.5vh,20px);padding:5px 12px;font-size:clamp(10px,1.3vh,12px)}
+html.present-mode .sec-intro{margin-bottom:clamp(14px,3vh,46px)}
+html.present-mode .sec-intro p{font-size:clamp(.82rem,1.75vh,1.05rem)}
+html.present-mode .grid,html.present-mode .eco,html.present-mode .impact-grid,
+html.present-mode .price-grid,html.present-mode .scen-grid,html.present-mode .steps,
+html.present-mode .deliv-grid,html.present-mode .vs{gap:clamp(8px,1.5vh,18px)}
+html.present-mode .card{padding:clamp(12px,2.2vh,26px)}
+html.present-mode .card p,html.present-mode .impact p{font-size:clamp(.76rem,1.6vh,.95rem)}
+html.present-mode .card .ic,html.present-mode .impact .i-ic{
+  width:clamp(28px,4.4vh,46px);height:clamp(28px,4.4vh,46px);margin-bottom:clamp(6px,1.4vh,18px)}
+html.present-mode .card .ic svg,html.present-mode .impact .i-ic svg{width:55%;height:55%}
+html.present-mode .list li{font-size:clamp(.76rem,1.6vh,.92rem)}
+html.present-mode .list{gap:clamp(4px,.9vh,9px)}
+html.present-mode .tag{font-size:clamp(.68rem,1.4vh,.79rem);padding:clamp(2px,.5vh,5px) clamp(7px,1.1vh,11px)}
+html.present-mode .tag-row{gap:clamp(5px,.9vh,8px)}
+html.present-mode .badge{font-size:clamp(.63rem,1.25vh,.72rem)}
+
+/* Neutraliza a altura mínima e o respiro pensados para leitura rolando */
+html.present-mode .hero{min-height:0;padding-top:0;padding-bottom:0}
+html.present-mode .hero h1{font-size:clamp(1.9rem,7.5vh,4.5rem);margin-bottom:clamp(10px,2vh,26px)}
+html.present-mode .hero .lead{margin-bottom:clamp(12px,2.4vh,38px)}
+html.present-mode .hero-cta{margin-bottom:clamp(14px,3.4vh,64px)}
+html.present-mode .chips{margin-bottom:clamp(10px,2.4vh,40px)}
+html.present-mode .hero-meta{padding-top:clamp(10px,2vh,26px)}
+html.present-mode .closing{padding:0;text-align:center}
+html.present-mode .closing h2{font-size:clamp(1.6rem,5.5vh,3.4rem);margin-bottom:clamp(12px,2.4vh,30px)}
+html.present-mode .closing .lead{margin-bottom:clamp(14px,2.6vh,40px)}
+
+/* Seções mais densas: pilares, diagnóstico, roadmap e investimento —
+   essas telas concentram 7 a 9 itens e ganham um aperto extra. */
+html.present-mode .legend{gap:clamp(4px,.8vh,10px);margin-bottom:clamp(6px,1.4vh,26px)}
+html.present-mode .legend .lg-item{padding:clamp(4px,.8vh,11px) clamp(9px,1.4vh,15px)}
+html.present-mode .legend .lg-tx b{font-size:clamp(.72rem,1.4vh,.86rem)}
+html.present-mode .legend .lg-tx span{font-size:clamp(.63rem,1.2vh,.76rem)}
+html.present-mode .pillar{margin-bottom:clamp(4px,.8vh,18px)}
+html.present-mode .pillar-head{padding:clamp(6px,1.3vh,26px) clamp(14px,2vh,28px);gap:clamp(8px,1.5vh,18px)}
+html.present-mode .pillar-head .p-ic{width:clamp(24px,3.8vh,48px);height:clamp(24px,3.8vh,48px)}
+html.present-mode .pillar-head .p-ic svg{width:52%;height:52%}
+html.present-mode .pillar-head .p-title span{font-size:clamp(.68rem,1.35vh,.86rem)}
+html.present-mode .diag{padding:clamp(6px,1.4vh,22px) 0}
+html.present-mode .diag .idx{width:28px}
+html.present-mode .diag .body h3{margin-bottom:clamp(2px,.5vh,6px)}
+html.present-mode .diag .body p{font-size:clamp(.74rem,1.5vh,.95rem)}
+html.present-mode .road{padding-left:26px}
+html.present-mode .phase{padding-bottom:clamp(6px,1.4vh,34px)}
+html.present-mode .phase .dot{left:-25px;width:15px;height:15px}
+html.present-mode .phase .ph-num{margin-bottom:clamp(1px,.3vh,4px)}
+html.present-mode .phase h3{margin-bottom:clamp(2px,.6vh,10px)}
+html.present-mode .price{padding:clamp(9px,1.6vh,26px)}
+html.present-mode .price .p-desc{font-size:clamp(.72rem,1.4vh,.86rem);margin-bottom:clamp(5px,1.1vh,16px)}
+html.present-mode .price .p-val{font-size:clamp(1.15rem,2.8vh,2.1rem)}
+html.present-mode .price.wide .p-val{font-size:clamp(1.3rem,3.1vh,2.4rem)}
+html.present-mode .price .p-note,html.present-mode .dep{font-size:clamp(.65rem,1.3vh,.76rem);margin-top:clamp(4px,.8vh,12px)}
+html.present-mode .total-line{padding:clamp(7px,1.3vh,20px) clamp(14px,2vh,26px);margin-bottom:clamp(7px,1.5vh,34px)}
+html.present-mode .total-line .t-val{font-size:clamp(1.1rem,2.4vh,1.6rem)}
+html.present-mode .scen{padding:clamp(10px,1.8vh,30px)}
+html.present-mode .scen .s-sub{margin-bottom:clamp(6px,1.3vh,22px);font-size:clamp(.72rem,1.4vh,.88rem)}
+html.present-mode .scen h3{padding-right:0}
+html.present-mode .scen .s-flag{position:static;display:inline-block;border-radius:100px;margin-bottom:clamp(4px,1vh,10px)}
+html.present-mode .tl-step{padding-bottom:clamp(4px,1.1vh,18px)}
+html.present-mode .tl-body .tl-when{margin-bottom:clamp(1px,.3vh,3px)}
+html.present-mode .tl-body .tl-what,html.present-mode .tl-body .tl-how{font-size:clamp(.72rem,1.4vh,.95rem)}
+
+/* Pilares (9 itens) e Roadmap (7 fases) em lista vertical não cabem numa
+   tela só. Na apresentação viram grade compacta — o clique ainda abre o
+   pilar para o detalhe, agora ocupando a célula dele na grade. */
+html.present-mode #pilares .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1.2vh,14px);align-content:center}
+html.present-mode #pilares .sec-intro,
+html.present-mode #pilares .legend{grid-column:1/-1}
+html.present-mode #pilares .sec-intro{margin-bottom:clamp(4px,1vh,20px)}
+html.present-mode #pilares .pillar{margin-bottom:0}
+html.present-mode #pilares .pillar-head{flex-direction:column;align-items:flex-start;text-align:left;gap:clamp(4px,.8vh,8px);padding:clamp(10px,1.8vh,18px)}
+html.present-mode #pilares .pillar-num{display:none}
+html.present-mode #pilares .pillar-head .p-title h3{font-size:clamp(.78rem,1.5vh,.92rem);margin-bottom:0}
+html.present-mode #pilares .pillar-head .p-title span{font-size:clamp(.66rem,1.25vh,.76rem);line-height:1.35}
+html.present-mode #pilares .pillar-head .caret{position:absolute;top:12px;right:12px;width:16px;height:16px}
+html.present-mode #pilares .pillar-head{position:relative}
+html.present-mode #pilares .pillar.open{grid-column:1/-1}
+html.present-mode #pilares .pillar.open .pillar-body-inner{max-height:52vh;overflow-y:auto}
+
+html.present-mode #roadmap .road{padding-left:0}
+html.present-mode #roadmap .road::before{display:none}
+html.present-mode #roadmap .road{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(6px,1.2vh,14px);align-content:center}
+html.present-mode #roadmap .phase{padding-bottom:0;padding:clamp(10px,1.8vh,16px);border:1px solid var(--stroke);border-radius:var(--radius-sm);background:var(--panel)}
+html.present-mode #roadmap .phase .dot{display:none}
+html.present-mode #roadmap .phase h3{font-size:clamp(.76rem,1.4vh,.95rem)}
+html.present-mode #roadmap .phase .tag-row .tag:nth-child(n+4){display:none}
+html.present-mode #roadmap .phase .tag-row::after{
+  content:"···";color:var(--tx-4);font-size:.7rem;align-self:center;padding:5px 2px;
+}
+html.present-mode #roadmap .sec-intro{margin-bottom:clamp(6px,1.4vh,26px)}
+
+/* Investimento: 4 preços + 2 cenários de pagamento + observações é muito
+   conteúdo distinto para uma tela só sem cortar informação — os textos de
+   apoio (parágrafo do segundo intro, notas dos cenários) ficam mais curtos
+   e a descrição de cada preço é limitada a 2 linhas, o essencial some. */
+html.present-mode #investimento .sec-intro{margin-bottom:clamp(6px,1.3vh,52px)}
+/* Os 4 preços viram uma linha só de 4 colunas (a mensalidade deixa de
+   ocupar linha própria) — isso elimina uma linha inteira da grade. */
+html.present-mode #investimento .price-grid{grid-template-columns:repeat(4,1fr)}
+html.present-mode #investimento .price.wide{
+  grid-column:auto;flex-direction:column;align-items:flex-start;background:none;
+}
+html.present-mode #investimento .price.wide .p-val{font-size:clamp(1.15rem,2.8vh,2.1rem)}
+html.present-mode #investimento .price .dep,
+html.present-mode #investimento .price .demo-link{margin-top:clamp(2px,.5vh,12px)}
+html.present-mode #investimento .price{gap:clamp(3px,.7vh,6px)}
+html.present-mode #investimento .total-line + .sec-intro p{display:none}
+html.present-mode #investimento .total-line + .sec-intro h3{font-size:clamp(.85rem,1.7vh,1.35rem);margin-bottom:0}
+/* .price .p-desc e .scen .note span são encurtados por JS (ver
+   truncateForSlides), não por -webkit-line-clamp: nesse encadeamento de
+   grid + flex-column, o clamp colapsava o card inteiro para altura 0 neste
+   motor — um conflito conhecido entre o flexbox legado e o moderno. */
+html.present-mode #investimento .scen .note{padding:clamp(5px,1vh,10px) clamp(8px,1.2vh,12px);margin-top:clamp(6px,1.2vh,22px)!important;gap:6px}
+html.present-mode #investimento .scen .note span{font-size:clamp(.62rem,1.15vh,.7rem)}
+html.present-mode #investimento .scen .note svg{width:13px;height:13px}
+/* Os dois passos do cronograma ficam lado a lado em vez de empilhados. */
+html.present-mode #investimento .tl{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+html.present-mode #investimento .tl-step{padding-bottom:0}
+html.present-mode #investimento .tl-step::before{display:none}
+html.present-mode #investimento .tl-dot{display:none}
+html.present-mode #investimento .price-grid{margin-bottom:clamp(5px,1vh,18px)}
+html.present-mode #investimento .scen{padding:clamp(7px,1.4vh,30px)}
+html.present-mode #investimento .scen .s-sub{margin-bottom:clamp(4px,.9vh,22px)}
+html.present-mode #investimento > .wrap > .note{padding:clamp(5px,1vh,16px) clamp(8px,1.2vh,18px);margin-top:clamp(4px,.9vh,26px)!important}
+html.present-mode #investimento > .wrap > .note span{font-size:clamp(.66rem,1.3vh,.9rem)}
+html.present-mode .note{padding:clamp(9px,1.6vh,16px) clamp(11px,1.6vh,18px);font-size:clamp(.75rem,1.5vh,.9rem)}
+html.present-mode .step{padding:clamp(12px,2.2vh,22px)}
+html.present-mode .deliv{padding:clamp(9px,1.6vh,15px) clamp(11px,1.5vh,16px);font-size:clamp(.76rem,1.55vh,.9rem)}
+html.present-mode .campaign{padding:clamp(18px,3vh,52px)}
+html.present-mode .callout{padding:clamp(16px,2.6vh,32px)}
+html.present-mode .eco .node{padding:clamp(9px,1.7vh,20px)}
+html.present-mode .eco .node .n-ic{width:clamp(26px,4vh,40px);height:clamp(26px,4vh,40px);margin-bottom:clamp(5px,1.2vh,12px)}
+html.present-mode .eco .node h4{font-size:clamp(.76rem,1.55vh,.98rem)}
+html.present-mode .eco .node p{font-size:clamp(.65rem,1.3vh,.8rem)}
+html.present-mode .vs .col{padding:clamp(13px,2.4vh,28px)}
+html.present-mode .vs .col ul li{font-size:clamp(.78rem,1.6vh,.95rem)}
+html.present-mode .tabs{margin-bottom:clamp(10px,2vh,26px)}
+html.present-mode .tab{padding:clamp(7px,1.4vh,11px) clamp(12px,1.8vh,20px);font-size:clamp(.76rem,1.6vh,.9rem)}
+
+/* Aviso de rolagem, só quando o slide realmente não coube */
+.scroll-hint{
+  position:fixed;left:50%;transform:translateX(-50%);z-index:72;
+  bottom:calc(var(--slide-bot,80px) - 6px);
+  display:none;align-items:center;gap:6px;pointer-events:none;
+  font-size:.7rem;font-weight:600;color:var(--tx-3);
+  background:rgba(8,11,22,.88);border:1px solid var(--stroke-2);border-radius:100px;padding:4px 12px;
+}
+html.present-mode .scroll-hint.on{display:flex;animation:hintBob 1.8s ease-in-out infinite}
+.scroll-hint svg{width:12px;height:12px;stroke:var(--g-turq)}
+@keyframes hintBob{0%,100%{opacity:.55;transform:translate(-50%,0)}50%{opacity:1;transform:translate(-50%,3px)}}
+@media(prefers-reduced-motion:reduce){html.present-mode .scroll-hint.on{animation:none}}
 .present-bar{
   position:fixed;left:0;right:0;bottom:0;z-index:70;display:none;
   align-items:center;justify-content:space-between;gap:16px;
@@ -483,6 +646,12 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
   .campaign{padding:34px}
   .hide-sm{display:none}
   .present-title{display:none}
+  /* As grades compactas de apresentação (pensadas para telas largas) also
+     precisam ceder colunas — 3–4 por linha não cabe num tablet em pé. */
+  html.present-mode #pilares .wrap{grid-template-columns:repeat(2,1fr)}
+  html.present-mode #roadmap .road{grid-template-columns:repeat(2,1fr)}
+  html.present-mode #investimento .price-grid{grid-template-columns:repeat(2,1fr)}
+  html.present-mode #investimento .price.wide{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;gap:16px}
 }
 @media(max-width:560px){
   section{padding:70px 0}
@@ -499,6 +668,13 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
   .present-bar{padding:12px 16px}
   .present-center{gap:8px}
   .present-nav{width:36px;height:36px}
+  /* Em celular, uma coluna só — o slide fica mais alto e rola, o que é
+     normal nesse tamanho de tela; o essencial é nada ficar espremido. */
+  html.present-mode #pilares .wrap{grid-template-columns:1fr}
+  html.present-mode #roadmap .road{grid-template-columns:1fr}
+  html.present-mode #investimento .price-grid{grid-template-columns:1fr}
+  html.present-mode #investimento .price.wide{grid-column:auto;flex-direction:column;align-items:flex-start}
+  html.present-mode #investimento .tl{grid-template-columns:1fr}
 }
 
 /* ---------- Print / PDF ---------- */
@@ -582,6 +758,10 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     </button>
   </div>
   <span class="present-title hide-sm" id="presentTitle"></span>
+</div>
+<div class="scroll-hint" id="scrollHint" aria-hidden="true">
+  <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+  role para ver o restante
 </div>
 
 <!-- ============ HERO ============ -->
@@ -1692,6 +1872,7 @@ function showTab(ev,id){
   var nextBtn=document.getElementById('presentNext');
   var counterEl=document.getElementById('presentCounter');
   var titleEl=document.getElementById('presentTitle');
+  var hintEl=document.getElementById('scrollHint');
 
   function slideTitle(section){
     var h=section.querySelector('h1, h2');
@@ -1716,8 +1897,20 @@ function showTab(ev,id){
     void active.offsetWidth;
     requestAnimationFrame(function(){
       reveals.forEach(function(el){ el.classList.add('in'); });
+      updateHint();
     });
     updateControls();
+  }
+
+  // O aviso só aparece quando o slide não coube e ainda há conteúdo abaixo.
+  function updateHint(){
+    if(!hintEl) return;
+    if(!presenting){ hintEl.classList.remove('on'); return; }
+    var s=slides[current];
+    if(!s){ hintEl.classList.remove('on'); return; }
+    var hidden=s.scrollHeight-s.clientHeight;
+    var atBottom=s.scrollTop+s.clientHeight>=s.scrollHeight-12;
+    hintEl.classList.toggle('on', hidden>8 && !atBottom);
   }
 
   function closestSlideIndex(){
@@ -1729,9 +1922,36 @@ function showTab(ev,id){
     return best;
   }
 
+  // Encurta textos longos para a apresentação sem depender de
+  // -webkit-line-clamp (ver nota no CSS). Guarda o texto original em
+  // data-full para devolver ao sair do modo apresentação.
+  // .price.wide traz um <b> no meio do texto (a campanha anual) — fica de
+  // fora para não perder o destaque ao truncar por textContent.
+  var TRUNC_TARGETS=[
+    {sel:'#investimento .price.avl .p-desc', len:78},
+    {sel:'#investimento .scen .note span', len:96}
+  ];
+  function truncateForSlides(){
+    TRUNC_TARGETS.forEach(function(t){
+      document.querySelectorAll(t.sel).forEach(function(el){
+        if(!el.dataset.full) el.dataset.full=el.textContent;
+        var full=el.dataset.full;
+        el.textContent = full.length>t.len ? full.slice(0,t.len).replace(/\s+\S*$/,'')+'…' : full;
+      });
+    });
+  }
+  function restoreTruncated(){
+    TRUNC_TARGETS.forEach(function(t){
+      document.querySelectorAll(t.sel).forEach(function(el){
+        if(el.dataset.full) el.textContent=el.dataset.full;
+      });
+    });
+  }
+
   function enterPresent(){
     var start=closestSlideIndex();
     presenting=true;
+    truncateForSlides();
     document.documentElement.classList.add('present-mode');
     showSlide(start);
     if(document.documentElement.requestFullscreen){
@@ -1742,9 +1962,11 @@ function showTab(ev,id){
   function exitPresent(){
     if(!presenting) return;
     presenting=false;
+    restoreTruncated();
     var landAt=slides[current];
     document.documentElement.classList.remove('present-mode');
     slides.forEach(function(s){ s.classList.remove('slide-active'); });
+    if(hintEl) hintEl.classList.remove('on');
     if(document.fullscreenElement && document.exitFullscreen){
       document.exitFullscreen().catch(function(){});
     }
@@ -1759,10 +1981,23 @@ function showTab(ev,id){
   if(nextBtn) nextBtn.addEventListener('click',next);
   if(prevBtn) prevBtn.addEventListener('click',prev);
 
+  slides.forEach(function(s){ s.addEventListener('scroll',updateHint,{passive:true}); });
+  var rz;
+  window.addEventListener('resize',function(){ clearTimeout(rz); rz=setTimeout(updateHint,150); });
+
   document.addEventListener('keydown',function(e){
     if(!presenting) return;
     // Com o exemplo aberto, o teclado pertence ao modal — não navega slides.
     if(document.body.classList.contains('modal-open')) return;
+    var s=slides[current];
+    var overflows=s && s.scrollHeight-s.clientHeight>8;
+    // Cima/baixo rolam o slide que não coube; só passam de slide no fim do curso.
+    if(e.key==='ArrowDown'&&overflows&&s.scrollTop+s.clientHeight<s.scrollHeight-4){
+      e.preventDefault(); s.scrollBy({top:Math.round(s.clientHeight*0.8),behavior:'smooth'}); return;
+    }
+    if(e.key==='ArrowUp'&&overflows&&s.scrollTop>4){
+      e.preventDefault(); s.scrollBy({top:-Math.round(s.clientHeight*0.8),behavior:'smooth'}); return;
+    }
     if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); next(); }
     else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){ e.preventDefault(); prev(); }
     else if(e.key==='Home'){ e.preventDefault(); showSlide(0); }
