@@ -192,13 +192,6 @@ html.present-mode .present-bar{display:flex}
 .tag-row{display:flex;flex-wrap:wrap;gap:8px}
 .tag{font-size:.79rem;color:var(--tx-2);padding:5px 11px;border:1px solid var(--stroke);border-radius:8px;background:rgba(255,255,255,.02)}
 
-/* Stats */
-.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.stat{text-align:left;padding:24px;border:1px solid var(--stroke);border-radius:var(--radius);background:var(--panel)}
-.stat .num{font-size:2.5rem;font-weight:750;letter-spacing:-.03em;line-height:1;margin-bottom:8px}
-.stat .lbl{font-size:.86rem;color:var(--tx-3)}
-.ph{color:var(--tx-4);font-style:italic}
-
 /* Problem / diagnosis rows */
 .diag{display:flex;gap:18px;padding:22px 0;border-top:1px solid var(--stroke)}
 .diag:last-child{border-bottom:1px solid var(--stroke)}
@@ -343,6 +336,7 @@ html.present-mode .present-bar{display:flex}
 .tab .cnt{font-size:.72rem;opacity:.6;margin-left:5px}
 .tabpane{display:none}
 .tabpane.active{display:block;animation:fade .4s ease}
+.pane-title{display:none} /* só na impressão, onde as quatro listas saem empilhadas */
 @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 .deliv-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:12px}
 .deliv{display:flex;gap:11px;padding:15px 16px;border:1px solid var(--stroke);border-radius:var(--radius-sm);background:var(--panel);font-size:.9rem;color:var(--tx-2);align-items:flex-start}
@@ -369,12 +363,6 @@ html.present-mode .present-bar{display:flex}
 .closing h2{max-width:16ch;margin:0 auto 30px;font-size:clamp(2rem,5vw,3.4rem)}
 .closing .lead{margin:0 auto 40px}
 
-/* Image placeholder */
-.imgph{border:1px dashed var(--stroke-2);border-radius:var(--radius);background:linear-gradient(135deg,rgba(255,255,255,.02),rgba(255,255,255,.04));display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:var(--tx-4);min-height:200px;text-align:center;padding:24px}
-.imgph svg{width:32px;height:32px;stroke:var(--tx-4)}
-.imgph span{font-size:.8rem;max-width:34ch}
-.imgph .lbl{font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--g-turq)}
-
 /* Footer */
 footer{position:relative;z-index:2;border-top:1px solid var(--stroke);padding:44px 0;margin-top:40px}
 .foot-inner{max-width:var(--maxw);margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap}
@@ -395,7 +383,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 }
 @media(max-width:900px){
   .nav-links.mobile-open a{padding:12px}
-  .g3,.g4,.eco,.stat-row,.impact-grid{grid-template-columns:repeat(2,1fr)}
+  .g3,.g4,.eco,.impact-grid{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(2,1fr)}
   .price-grid{grid-template-columns:repeat(2,1fr)}
   .scen-grid{grid-template-columns:1fr}
@@ -408,7 +396,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 }
 @media(max-width:560px){
   section{padding:70px 0}
-  .g2,.g3,.g4,.eco,.stat-row,.impact-grid,.deliv-grid,.steps,.price-grid{grid-template-columns:1fr}
+  .g2,.g3,.g4,.eco,.impact-grid,.deliv-grid,.steps,.price-grid{grid-template-columns:1fr}
   .scen h3{padding-right:0}
   .scen .s-flag{position:static;display:inline-block;border-radius:100px;margin-bottom:12px}
   .price.wide{flex-direction:column;align-items:flex-start}
@@ -434,9 +422,9 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
   .card,.pillar,.stat,.impact,.step,.deliv,.eco .node,.vs .col{border-color:#d5d9e2!important;background:#fff!important;box-shadow:none!important}
   .grad-text,.step::before{-webkit-text-fill-color:#1560d8!important;color:#1560d8!important}
   .pillar-body{max-height:none!important}
-  .tabpane{display:block!important}
+  .tabpane{display:block!important;margin-bottom:20px;page-break-inside:avoid}
   .tabs{display:none}
-  .imgph{border-color:#c9cede}
+  .pane-title{display:block;font-size:1.05rem;font-weight:700;margin:0 0 6px;color:#0b1020}
   a{color:#1560d8}
   h1,h2{color:#0b1020}
 }
@@ -520,8 +508,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     </div>
     <div class="chips reveal d3">
       <span class="chip"><b>Logística B2B</b> · produtos acabados e distribuição</span>
-      <span class="chip"><b>Marcas atendidas</b> · <span class="ph">a validar comercialmente</span></span>
-      <span class="chip">Posicionamento · Presença · Reputação · Aquisição</span>
+      <span class="chip"><b>Quatro frentes</b> · marca, presença digital, reputação e aquisição</span>
     </div>
     <div class="hero-meta reveal d4">
       <span class="sig">
@@ -542,15 +529,28 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
       <h2>Operação de grande porte, marca ainda invisível.</h2>
       <p>A Fitlog atua na logística de produtos acabados, levando a distribuição até os pontos de venda, com capacidade para atender operações relevantes. O que ainda não existe é uma marca que comunique esse tamanho — e é exatamente aí que está a oportunidade.</p>
     </div>
-    <div class="stat-row">
-      <div class="stat reveal"><div class="num grad-text">B2B</div><div class="lbl">Foco em logística de produtos acabados e distribuição para o varejo</div></div>
-      <div class="stat reveal d1"><div class="num grad-text">+</div><div class="lbl">Experiência com marcas relevantes <span class="ph">(a validar)</span></div></div>
-      <div class="stat reveal d2"><div class="num grad-text">0</div><div class="lbl">Estrutura de marketing e marca consolidada hoje</div></div>
-      <div class="stat reveal d3"><div class="num grad-text">↑</div><div class="lbl">Espaço para transformar capacidade em autoridade percebida</div></div>
-    </div>
-    <div class="note reveal d2" style="margin-top:26px">
-      <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      <span>Marcas como as citadas em briefing devem ser tratadas como <b>“marcas atendidas”</b> ou <b>“operações realizadas”</b> e validadas comercialmente antes da publicação. Nenhum dado de frota, unidades, colaboradores ou regiões foi presumido — os campos marcados como <span class="ph">a validar</span> aguardam confirmação da Fitlog.</span>
+    <div class="vs">
+      <div class="col real reveal">
+        <h4>O que a Fitlog é</h4>
+        <ul>
+          <li>Operação estruturada de logística B2B</li>
+          <li>Capacidade para grandes distribuições</li>
+          <li>Experiência com marcas relevantes</li>
+          <li>Processos, estrutura e know-how consolidados</li>
+        </ul>
+      </div>
+      <div class="arrow reveal d1">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--g-cyan2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </div>
+      <div class="col perc reveal d2">
+        <h4>O que o mercado percebe hoje</h4>
+        <ul>
+          <li>Marca difícil de encontrar e diferenciar</li>
+          <li>Baixa presença institucional e digital</li>
+          <li>Autoridade não comunicada</li>
+          <li>Risco de confusão com outra empresa</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
@@ -595,45 +595,11 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
   </div>
 </section>
 
-<!-- ============ PERCEPÇÃO ============ -->
-<section id="percepcao">
-  <div class="wrap">
-    <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 03 · O desafio de percepção</div>
-      <h2>A distância entre o que a Fitlog entrega e o que o mercado enxerga.</h2>
-      <p>A capacidade operacional existe. O que falta é traduzir essa capacidade em uma imagem que o mercado reconheça, encontre e lembre.</p>
-    </div>
-    <div class="vs">
-      <div class="col real reveal">
-        <h4>O que a Fitlog é</h4>
-        <ul>
-          <li>Operação estruturada de logística B2B</li>
-          <li>Capacidade para grandes distribuições</li>
-          <li>Experiência com marcas relevantes</li>
-          <li>Processos, estrutura e know-how consolidados</li>
-        </ul>
-      </div>
-      <div class="arrow reveal d1">
-        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="var(--g-cyan2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-      </div>
-      <div class="col perc reveal d2">
-        <h4>O que o mercado percebe hoje</h4>
-        <ul>
-          <li>Marca difícil de encontrar e diferenciar</li>
-          <li>Baixa presença institucional e digital</li>
-          <li>Autoridade não comunicada</li>
-          <li>Risco de confusão com outra empresa</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============ REPUTAÇÃO ============ -->
 <section id="reputacao">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 04 · Busca e reputação</div>
+      <div class="eyebrow"><span class="dot"></span> 03 · Busca e reputação</div>
       <h2>A confusão de nomes é uma frente estratégica — não um detalhe.</h2>
       <p>Uma empresa de nome semelhante, voltada ao B2C e com muitas reclamações, cria impactos comerciais reais para a Fitlog. É uma das prioridades do projeto.</p>
     </div>
@@ -664,7 +630,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
       </div>
       <div class="note reveal" style="margin-top:26px">
         <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-        <span>Trabalhamos com <b>análise, contestação e gestão</b> de avaliações que claramente não pertençam à Fitlog. Não prometemos a exclusão de avaliações — isso depende das políticas do Google e da comprovação de que os comentários são de outra empresa. A diferenciação é feita de forma elegante, sem ataque direto ao concorrente.</span>
+        <span>Atuamos com <b>análise, contestação e gestão</b> das avaliações que não pertencem à Fitlog. A remoção depende das políticas do Google e da comprovação de origem — por isso é um trabalho de contestação, não uma garantia. A diferenciação entre as duas marcas é construída pelo posicionamento e pela presença na busca, sem confronto direto com a outra empresa.</span>
       </div>
     </div>
   </div>
@@ -674,7 +640,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="visao">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 05 · Nossa visão estratégica</div>
+      <div class="eyebrow"><span class="dot"></span> 04 · Nossa visão estratégica</div>
       <h2>Marketing não começa no anúncio. Começa na base.</h2>
       <p>Não faz sentido investir em publicações e mídia antes de organizar a marca, a mensagem e a estrutura digital. O projeto segue uma ordem lógica, em quatro movimentos.</p>
     </div>
@@ -711,7 +677,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="ecossistema">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 06 · O ecossistema de atuação</div>
+      <div class="eyebrow"><span class="dot"></span> 05 · O ecossistema de atuação</div>
       <h2>Tudo conectado em torno da marca.</h2>
       <p>Cada frente sustenta a outra. Marca, conteúdo, dados e mídia alimentam um único objetivo: gerar oportunidades comerciais qualificadas.</p>
     </div>
@@ -733,7 +699,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="pilares">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 07 · Escopo estratégico</div>
+      <div class="eyebrow"><span class="dot"></span> 06 · Escopo estratégico</div>
       <h2>Nove pilares, um projeto integrado.</h2>
       <p>Toque em cada pilar para ver as entregas. Cada item está marcado com a sua categoria comercial — as quatro se mantêm com o mesmo significado em toda a proposta.</p>
     </div>
@@ -881,7 +847,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
         </div>
         <div class="note" style="margin-top:20px">
           <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          <span>Sem promessa de posição garantida no Google. “Perfil da Empresa no Google” e “Google Ads” são tratados como frentes distintas — a otimização do perfil não é uma “campanha”.</span>
+          <span>O <b>Perfil da Empresa no Google</b> e o <b>Google Ads</b> são frentes distintas: o perfil trabalha a presença orgânica local e a reputação; as campanhas atuam na busca paga. Nenhuma das duas garante posição fixa nos resultados — o que o trabalho constrói é consistência e relevância ao longo do tempo.</span>
         </div>
         <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-imp">● Implantação — auditoria e organização inicial</span><span class="badge b-rec">● Recorrente — gestão e monitoramento</span></div>
       </div></div>
@@ -926,7 +892,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
         </div>
         <div class="note" style="margin-top:20px">
           <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          <span>A <b>verba de mídia</b> é um investimento separado, pago diretamente às plataformas, e não se confunde com o fee da agência. Não prometemos quantidade específica de leads.</span>
+          <span>A <b>verba de mídia</b> é investida diretamente nas plataformas e não integra o fee da agência. O volume de oportunidades depende da verba, do segmento e da concorrência — as metas são definidas em conjunto a partir dos primeiros meses de dados, não estimadas antes de existir histórico.</span>
         </div>
         <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-imp">● Implantação — configuração das contas</span><span class="badge b-rec">● Recorrente — gestão das campanhas</span><span class="badge b-opt">● Opcional — verba de mídia</span></div>
       </div></div>
@@ -961,7 +927,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
             </div>
           </div>
           <div>
-            <h4>Escopo de referência (a validar)</h4>
+            <h4>Escopo mensal sugerido</h4>
             <ul class="list">
               <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Planejamento mensal do calendário editorial</li>
               <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>~8 posts mensais de feed, com layout e legenda</li>
@@ -969,7 +935,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
               <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Até 4 vídeos curtos por mês (~1 por semana)</li>
               <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Administração dos perfis, relatórios e coordenação</li>
             </ul>
-            <p class="small muted" style="margin-top:10px">Volume inspirado em projeto semelhante — sugestão, não contratação automática.</p>
+            <p class="small muted" style="margin-top:10px">Volumes indicados como ponto de partida, ajustados conforme a rotina de conteúdo e a agenda da operação.</p>
           </div>
         </div>
         <div style="margin-top:20px"><span class="badge b-rec">● Recorrente — incluído na mensalidade</span></div>
@@ -1005,16 +971,19 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
             </ul>
           </div>
           <div>
-            <div class="imgph" style="min-height:170px">
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21"/></svg>
-              <span class="lbl">Placeholder</span>
-              <span>Espaço reservado para imagens da operação após a diária de captação.</span>
-            </div>
+            <h4>Onde esse material é usado</h4>
+            <ul class="list">
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Landing page e futuras páginas do site</li>
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Conteúdo recorrente de LinkedIn e Instagram</li>
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Anúncios e peças de campanha</li>
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Apresentações e propostas comerciais</li>
+              <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Perfil da Empresa no Google</li>
+            </ul>
           </div>
         </div>
         <div class="note" style="margin-top:20px">
           <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-          <span>Deslocamento, locação, atores, drones, equipamentos especiais, alimentação e hospedagem podem ser orçados à parte. A diária pode ser cobrada separadamente do contrato mensal.</span>
+          <span>O valor da diária cobre equipe, captação e tratamento do material. Deslocamento, locação, atores, drones, equipamentos especiais, alimentação e hospedagem são orçados à parte, conforme a necessidade de cada produção.</span>
         </div>
         <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-avl">● Avulso — <span class="pv">R$ 5.000</span></span><span class="badge b-opt">● Opcional — deslocamento, drone, locação</span></div>
       </div></div>
@@ -1036,7 +1005,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
           <div class="grid g3" style="margin-top:28px;gap:16px">
             <div class="card" style="background:rgba(255,255,255,.05)">
               <h4 style="font-size:.98rem;margin-bottom:8px">Filme principal</h4>
-              <p class="small">Comercial com linguagem publicitária, mostrando a jornada dos produtos e a operação. Referência de nível: campanhas institucionais de grandes players do setor (referência de produção, não cópia).</p>
+              <p class="small">Comercial com linguagem publicitária, mostrando a jornada dos produtos e a operação — no mesmo nível de produção das campanhas institucionais dos grandes players do setor.</p>
             </div>
             <div class="card" style="background:rgba(255,255,255,.05)">
               <h4 style="font-size:.98rem;margin-bottom:8px">Desenvolvimento</h4>
@@ -1127,7 +1096,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
           </div>
           <div>
             <h4>Modelo de entrega</h4>
-            <p class="muted small">Uma quantidade definida de artes mensais em período inicial; novas demandas contratadas de forma avulsa ou renegociadas. Estruturado como possibilidade, sem fixar quantidade sem confirmação.</p>
+            <p class="muted small">A mensalidade contempla um volume acordado de artes por mês. Demandas acima desse volume, bem como qualquer produção impressa, são orçadas separadamente antes da execução.</p>
           </div>
         </div>
         <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-rec">● Recorrente — artes mensais</span><span class="badge b-opt">● Opcional — impressos, brindes, grandes formatos</span></div>
@@ -1141,7 +1110,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="dados">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 08 · Inteligência e relatórios</div>
+      <div class="eyebrow"><span class="dot"></span> 07 · Inteligência e relatórios</div>
       <h2>Decisões guiadas por dados, não por achismo.</h2>
       <p>Toda a estrutura é medida. Isso transforma o marketing em um processo de melhoria contínua e dá à Fitlog visibilidade real sobre o que funciona.</p>
     </div>
@@ -1158,7 +1127,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="roadmap">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 09 · Roadmap</div>
+      <div class="eyebrow"><span class="dot"></span> 08 · Roadmap</div>
       <h2>Sete fases, na ordem que faz sentido.</h2>
       <p>Um caminho estruturado do diagnóstico ao crescimento. As fases 1 a 4 concentram os projetos avulsos — a base. Da fase 5 em diante, tudo acontece dentro do trabalho recorrente.</p>
     </div>
@@ -1220,7 +1189,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="entregas">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 10 · Entregas</div>
+      <div class="eyebrow"><span class="dot"></span> 09 · Entregas</div>
       <h2>Quatro categorias, sem zona cinzenta.</h2>
       <p>Cada entrega pertence a uma — e apenas uma — destas categorias. Avulso é avulso, implantação é implantação, recorrente é recorrente e opcional é opcional.</p>
     </div>
@@ -1232,6 +1201,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     </div>
 
     <div class="tabpane active" id="avl">
+      <h3 class="pane-title">Avulso — projetos de preço fechado</h3>
       <p class="muted small" style="margin-bottom:16px">Projetos com preço fechado, contratados uma única vez. São a fundação do trabalho — sem eles, o recorrente não tem base para operar.</p>
       <div class="deliv-grid">
         <div class="deliv"><span class="d-dot"></span>Diagnóstico e estratégia de marca</div>
@@ -1243,6 +1213,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     </div>
 
     <div class="tabpane" id="imp">
+      <h3 class="pane-title">Implantação — setup técnico incluído</h3>
       <p class="muted small" style="margin-bottom:16px">Configuração técnica executada no início do projeto. Não é cobrada à parte — faz parte da entrega dos avulsos e do início do recorrente.</p>
       <div class="deliv-grid">
         <div class="deliv"><span class="d-dot"></span>Google Analytics 4 e Tag Manager</div>
@@ -1256,6 +1227,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     </div>
 
     <div class="tabpane" id="rec">
+      <h3 class="pane-title">Recorrente — coberto pela mensalidade</h3>
       <p class="muted small" style="margin-bottom:16px">Tudo o que está coberto pela mensalidade da agência — incluindo <b>uma campanha publicitária institucional por ano</b>.</p>
       <div class="deliv-grid">
         <div class="deliv"><span class="d-dot"></span><b>1 campanha publicitária institucional por ano</b></div>
@@ -1274,6 +1246,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     </div>
 
     <div class="tabpane" id="opt">
+      <h3 class="pane-title">Opcional — orçado à parte, sob demanda</h3>
       <p class="muted small" style="margin-bottom:16px">Itens sob demanda, orçados individualmente no momento em que forem necessários. Nenhum deles está embutido nos valores desta proposta.</p>
       <div class="deliv-grid">
         <div class="deliv"><span class="d-dot"></span>Site institucional completo</div>
@@ -1296,7 +1269,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="investimento">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 11 · Investimento</div>
+      <div class="eyebrow"><span class="dot"></span> 10 · Investimento</div>
       <h2>Os valores, na mesma lógica das entregas.</h2>
       <p>Três projetos avulsos formam a base. A partir dela, a mensalidade mantém a marca viva, ativa e medida — com uma campanha publicitária por ano inclusa.</p>
     </div>
@@ -1418,7 +1391,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="impactos">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 12 · Impactos esperados</div>
+      <div class="eyebrow"><span class="dot"></span> 11 · Impactos esperados</div>
       <h2>O que muda quando a marca acompanha a operação.</h2>
       <p>Resultados qualitativos que sustentam o crescimento comercial no médio e longo prazo.</p>
     </div>
@@ -1432,7 +1405,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     </div>
     <div class="note reveal" style="margin-top:26px">
       <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      <span>Impactos apresentados de forma qualitativa. Não projetamos números específicos de leads, posições ou vendas sem dados históricos da operação.</span>
+      <span>A Fitlog ainda não possui histórico de marketing digital medido. Por isso esta proposta trabalha com impactos qualitativos — as metas numéricas de tráfego, oportunidades e conversão serão definidas em conjunto assim que os primeiros meses de operação gerarem dados reais.</span>
     </div>
   </div>
 </section>
@@ -1441,13 +1414,13 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="proximos">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 13 · Próximos passos</div>
+      <div class="eyebrow"><span class="dot"></span> 12 · Próximos passos</div>
       <h2>Do plano à execução.</h2>
       <p>Um caminho direto para tirar o projeto do papel.</p>
     </div>
     <div class="steps reveal">
       <div class="step"><h4>Validação do escopo</h4><p>Alinhamento das frentes e prioridades desta proposta.</p></div>
-      <div class="step"><h4>Definição de prioridades</h4><p>O que entra na primeira onda de implantação.</p></div>
+      <div class="step"><h4>Definição de prioridades</h4><p>Quais avulsos entram primeiro e quando inicia o recorrente.</p></div>
       <div class="step"><h4>Aprovação comercial</h4><p>Escolha do cenário de contratação e do parcelamento.</p></div>
       <div class="step"><h4>Reunião de imersão</h4><p>Início do diagnóstico com o time da Fitlog.</p></div>
       <div class="step"><h4>Início do projeto</h4><p>Execução da Fase 1 e do cronograma acordado.</p></div>
