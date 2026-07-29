@@ -329,6 +329,69 @@ html.present-mode .present-bar{display:flex}
 .phase h3{margin-bottom:10px}
 .phase .tag-row{margin-top:4px}
 
+/* ---------- Visualizador de exemplo (modal na própria página) ----------
+   Precisa ser um overlay no mesmo documento, e não window.open: ao
+   compartilhar a guia no Google Meet, uma janela separada não é capturada. */
+.demo-btn{
+  display:inline-flex;align-items:center;gap:9px;cursor:pointer;font-family:inherit;
+  font-size:.86rem;font-weight:600;color:var(--tx);
+  background:var(--grad-soft);border:1px solid var(--stroke-2);border-radius:11px;
+  padding:11px 17px;transition:transform .18s,border-color .18s,background .18s;
+}
+.demo-btn:hover{transform:translateY(-2px);border-color:rgba(37,230,154,.45)}
+.demo-btn svg{width:16px;height:16px;stroke:var(--g-green);flex-shrink:0}
+.demo-btn .db-sub{font-weight:500;color:var(--tx-3);font-size:.8rem}
+.demo-link{
+  display:inline-flex;align-items:center;gap:6px;cursor:pointer;font-family:inherit;
+  font-size:.78rem;font-weight:600;color:var(--g-green);background:none;border:0;
+  padding:0;margin-top:12px;text-decoration:underline;text-underline-offset:3px;
+}
+.demo-link svg{width:13px;height:13px;stroke:currentColor}
+
+.modal{
+  position:fixed;inset:0;z-index:90;display:none;
+  align-items:center;justify-content:center;padding:28px;
+  background:rgba(3,5,11,.82);backdrop-filter:blur(10px);
+}
+.modal.open{display:flex;animation:fade .25s ease}
+body.modal-open{overflow:hidden}
+.modal-box{
+  width:100%;max-width:1240px;height:100%;max-height:92vh;
+  display:flex;flex-direction:column;overflow:hidden;
+  background:var(--bg-2);border:1px solid var(--stroke-2);border-radius:18px;
+  box-shadow:0 30px 90px rgba(0,0,0,.6);
+}
+.modal-head{
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;
+  padding:15px 20px;border-bottom:1px solid var(--stroke);flex-shrink:0;
+}
+.modal-head .mh-tx{flex:1;min-width:180px}
+.modal-head h3{font-size:1rem;margin-bottom:1px}
+.modal-head .mh-url{font-size:.76rem;color:var(--tx-4);word-break:break-all}
+.modal-act{
+  display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-family:inherit;
+  font-size:.8rem;font-weight:600;color:var(--tx-2);text-decoration:none;
+  background:var(--panel);border:1px solid var(--stroke-2);border-radius:9px;padding:8px 13px;
+  transition:background .18s,color .18s;
+}
+.modal-act:hover{background:var(--panel-2);color:var(--tx)}
+.modal-act svg{width:14px;height:14px;stroke:currentColor}
+.modal-close{width:38px;height:38px;padding:0;justify-content:center;flex-shrink:0}
+.modal-body{flex:1;position:relative;background:#fff;min-height:0}
+.modal-body iframe{width:100%;height:100%;border:0;display:block}
+.modal-fallback{
+  position:absolute;inset:0;display:none;flex-direction:column;
+  align-items:center;justify-content:center;gap:14px;text-align:center;padding:32px;
+  background:var(--bg-2);color:var(--tx-3);
+}
+.modal.blocked .modal-fallback{display:flex}
+.modal-fallback svg{width:34px;height:34px;stroke:var(--tx-4)}
+.modal-fallback p{max-width:44ch;font-size:.92rem}
+.modal-foot{
+  padding:10px 20px;border-top:1px solid var(--stroke);flex-shrink:0;
+  font-size:.76rem;color:var(--tx-4);
+}
+
 /* Deliverables tabs */
 .tabs{display:flex;gap:8px;margin-bottom:26px;flex-wrap:wrap}
 .tab{font-family:inherit;font-size:.9rem;font-weight:600;cursor:pointer;padding:11px 20px;border-radius:12px;border:1px solid var(--stroke);background:var(--panel);color:var(--tx-3);transition:.2s}
@@ -415,7 +478,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 @media print{
   :root{--bg:#fff;--tx:#0b1020;--tx-2:#2a3040;--tx-3:#4a5060}
   body{background:#fff;color:#0b1020}
-  .ambient,.topbar,.progress,.menu-toggle,.hero-cta,footer .fnote,.present-bar{display:none!important}
+  .ambient,.topbar,.progress,.menu-toggle,.hero-cta,footer .fnote,.present-bar,.modal,.demo-btn,.demo-link{display:none!important}
   section{padding:26px 0;page-break-inside:avoid}
   html.present-mode section{display:block!important;position:relative!important;height:auto!important;width:auto!important;overflow:visible!important}
   .reveal{opacity:1!important;transform:none!important}
@@ -802,6 +865,12 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
               <li><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Dashboard no Reportei</li>
             </ul>
           </div>
+        </div>
+        <div style="margin-top:24px">
+          <button class="demo-btn" data-demo="https://arwmediabr.wixsite.com/cn-udi-jardins" data-demo-title="Exemplo de landing page">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+            Ver um exemplo ao vivo <span class="db-sub">— abre aqui na página</span>
+          </button>
         </div>
         <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-avl">● Avulso — Landing page <span class="pv">R$ 4.500</span></span><span class="badge b-imp">● Implantação — configuração técnica</span><span class="badge b-rec">● Recorrente — atualizações</span><span class="badge b-opt">● Opcional — site institucional completo</span></div>
       </div></div>
@@ -1291,6 +1360,10 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
           <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
           Só é executada com o rebranding contratado
         </div>
+        <button class="demo-link" data-demo="https://arwmediabr.wixsite.com/cn-udi-jardins" data-demo-title="Exemplo de landing page">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>
+          Ver um exemplo ao vivo
+        </button>
       </div>
       <div class="price avl">
         <div class="p-cat">Avulso</div>
@@ -1442,6 +1515,36 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     </div>
   </div>
 </section>
+
+<!-- Visualizador de exemplo — overlay no mesmo documento para ser capturado
+     junto com a guia no compartilhamento de tela do Google Meet. -->
+<div class="modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoTitle">
+  <div class="modal-box">
+    <div class="modal-head">
+      <div class="mh-tx">
+        <h3 id="demoTitle">Exemplo de landing page</h3>
+        <div class="mh-url" id="demoUrlLabel"></div>
+      </div>
+      <a class="modal-act" id="demoOpenTab" href="#" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Abrir em nova aba
+      </a>
+      <button class="modal-act modal-close" id="demoClose" aria-label="Fechar exemplo" title="Fechar (Esc)">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="modal-body">
+      <iframe id="demoFrame" title="Exemplo de landing page" loading="lazy"
+              referrerpolicy="no-referrer"
+              sandbox="allow-scripts allow-same-origin allow-popups allow-forms"></iframe>
+      <div class="modal-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+        <p>O site não permite ser exibido dentro de outra página. Use o botão <b>Abrir em nova aba</b> acima para mostrá-lo.</p>
+      </div>
+    </div>
+    <div class="modal-foot">Exemplo de referência · a landing page da Fitlog será construída sobre o novo posicionamento e a nova identidade</div>
+  </div>
+</div>
 
 <footer>
   <div class="foot-inner">
@@ -1600,12 +1703,64 @@ function showTab(ev,id){
 
   document.addEventListener('keydown',function(e){
     if(!presenting) return;
+    // Com o exemplo aberto, o teclado pertence ao modal — não navega slides.
+    if(document.body.classList.contains('modal-open')) return;
     if(e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '||e.key==='PageDown'){ e.preventDefault(); next(); }
     else if(e.key==='ArrowLeft'||e.key==='ArrowUp'||e.key==='PageUp'){ e.preventDefault(); prev(); }
     else if(e.key==='Home'){ e.preventDefault(); showSlide(0); }
     else if(e.key==='End'){ e.preventDefault(); showSlide(slides.length-1); }
     else if(e.key==='Escape'){ exitPresent(); }
   });
+})();
+
+// Visualizador de exemplo em modal (mesma guia, para o Google Meet capturar)
+(function(){
+  var modal=document.getElementById('demoModal');
+  if(!modal) return;
+  var frame=document.getElementById('demoFrame');
+  var openTab=document.getElementById('demoOpenTab');
+  var urlLabel=document.getElementById('demoUrlLabel');
+  var titleEl=document.getElementById('demoTitle');
+  var closeBtn=document.getElementById('demoClose');
+  var lastFocus=null, blockedTimer=null;
+
+  function open(url,title){
+    lastFocus=document.activeElement;
+    titleEl.textContent=title||'Exemplo';
+    urlLabel.textContent=url.replace(/^https?:\/\//,'');
+    openTab.href=url;
+    modal.classList.remove('blocked');
+    frame.src=url;
+    modal.classList.add('open');
+    document.body.classList.add('modal-open');
+    closeBtn.focus();
+    // O navegador não expõe o motivo de um frame bloqueado (X-Frame-Options
+    // ou CSP), então avisamos por tempo caso nada carregue.
+    clearTimeout(blockedTimer);
+    blockedTimer=setTimeout(function(){ modal.classList.add('blocked'); },6000);
+  }
+  function close(){
+    clearTimeout(blockedTimer);
+    modal.classList.remove('open','blocked');
+    document.body.classList.remove('modal-open');
+    frame.src='about:blank';           // interrompe vídeo/áudio do exemplo
+    if(lastFocus&&lastFocus.focus) lastFocus.focus();
+  }
+
+  frame.addEventListener('load',function(){
+    if(frame.src&&frame.src!=='about:blank'){ clearTimeout(blockedTimer); }
+  });
+
+  document.querySelectorAll('[data-demo]').forEach(function(el){
+    el.addEventListener('click',function(){
+      open(el.getAttribute('data-demo'), el.getAttribute('data-demo-title'));
+    });
+  });
+  closeBtn.addEventListener('click',close);
+  modal.addEventListener('click',function(e){ if(e.target===modal) close(); });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'&&modal.classList.contains('open')){ e.stopPropagation(); close(); }
+  },true);
 })();
 </script>
 </body>
