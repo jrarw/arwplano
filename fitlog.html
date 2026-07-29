@@ -96,12 +96,12 @@ h3{font-size:1.28rem;font-weight:650;margin-bottom:8px}
 }
 .topbar.scrolled{background:rgba(5,7,15,.72);backdrop-filter:blur(16px);border-bottom:1px solid var(--stroke)}
 .topbar-inner{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.01em;font-size:1.02rem;cursor:pointer}
+.brand{display:flex;align-items:center;gap:11px;font-weight:700;letter-spacing:-.01em;font-size:1.02rem;cursor:pointer;flex-shrink:0;white-space:nowrap}
 .brand .mark{width:30px;height:30px;flex-shrink:0}
 .brand small{display:block;font-size:.66rem;font-weight:500;letter-spacing:.14em;color:var(--tx-3);text-transform:uppercase;margin-top:1px}
-.nav-links{display:flex;gap:4px;align-items:center}
+.nav-links{display:flex;gap:2px;align-items:center;min-width:0}
 .nav-links a{
-  font-size:.83rem;color:var(--tx-3);text-decoration:none;padding:7px 12px;border-radius:9px;
+  font-size:.8rem;color:var(--tx-3);text-decoration:none;padding:7px 9px;border-radius:9px;
   transition:color .18s,background .18s;font-weight:500;white-space:nowrap;
 }
 .nav-links a:hover{color:var(--tx)}
@@ -253,9 +253,70 @@ html.present-mode .present-bar{display:flex}
 .pillar-body-inner .cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:26px;margin-top:22px}
 .pillar-body-inner .cols h4{font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--g-turq);margin-bottom:12px}
 .badge{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:600;padding:4px 10px;border-radius:100px;border:1px solid var(--stroke-2)}
-.b-point{color:var(--g-green);background:rgba(37,230,154,.08)}
-.b-rec{color:var(--g-cyan2);background:rgba(41,194,245,.08)}
+/* Quatro categorias comerciais — cor fixa e consistente em toda a proposta */
+.b-avl{color:var(--g-green);background:rgba(37,230,154,.08)}
+.b-imp{color:var(--g-turq);background:rgba(31,214,196,.08)}
+.b-rec{color:var(--g-blue);background:rgba(61,123,246,.12)}
 .b-opt{color:var(--g-violet);background:rgba(168,85,247,.1)}
+.badge .pv{font-weight:700;letter-spacing:-.01em;font-variant-numeric:tabular-nums}
+
+/* Legenda das categorias */
+.legend{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:26px}
+.legend .lg-item{display:flex;align-items:center;gap:9px;padding:11px 15px;border:1px solid var(--stroke);border-radius:12px;background:var(--panel);flex:1;min-width:210px}
+.legend .lg-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0}
+.legend .lg-dot.avl{background:var(--g-green);box-shadow:0 0 10px rgba(37,230,154,.6)}
+.legend .lg-dot.imp{background:var(--g-turq);box-shadow:0 0 10px rgba(31,214,196,.6)}
+.legend .lg-dot.rec{background:var(--g-blue);box-shadow:0 0 10px rgba(61,123,246,.6)}
+.legend .lg-dot.opt{background:var(--g-violet);box-shadow:0 0 10px rgba(168,85,247,.6)}
+.legend .lg-tx b{display:block;font-size:.86rem;color:var(--tx);line-height:1.3}
+.legend .lg-tx span{font-size:.76rem;color:var(--tx-3)}
+
+/* ---------- Investimento ---------- */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:18px}
+.price{position:relative;padding:26px;border:1px solid var(--stroke);border-radius:var(--radius);background:var(--panel);display:flex;flex-direction:column;gap:6px;transition:transform .3s,border-color .3s}
+.price:hover{transform:translateY(-3px);border-color:var(--stroke-2)}
+.price::before{content:"";position:absolute;top:0;left:26px;right:26px;height:2px;border-radius:0 0 3px 3px}
+.price.avl::before{background:var(--g-green)}
+.price.rec::before{background:var(--g-blue)}
+.price .p-cat{font-size:.7rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px}
+.price.avl .p-cat{color:var(--g-green)}
+.price.rec .p-cat{color:var(--g-blue)}
+.price h3{font-size:1.12rem;margin-bottom:2px}
+.price .p-desc{font-size:.86rem;color:var(--tx-3);margin-bottom:16px;flex:1}
+.price .p-val{font-size:2.1rem;font-weight:750;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;color:var(--tx)}
+.price .p-val small{font-size:.9rem;font-weight:500;color:var(--tx-3);letter-spacing:0}
+.price .p-note{font-size:.76rem;color:var(--tx-4);margin-top:8px}
+.price.wide{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;
+  background:linear-gradient(120deg,rgba(61,123,246,.09),rgba(41,194,245,.05) 60%,rgba(168,85,247,.08))}
+.price.wide .p-left{flex:1;min-width:260px}
+.price.wide .p-desc{margin-bottom:0}
+.price.wide .p-val{font-size:2.4rem}
+.dep{display:inline-flex;align-items:center;gap:7px;font-size:.74rem;color:var(--g-turq);
+  background:rgba(31,214,196,.08);border:1px solid rgba(31,214,196,.25);border-radius:100px;padding:4px 11px;margin-top:12px;align-self:flex-start}
+.total-line{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  padding:20px 26px;border:1px solid var(--stroke-2);border-radius:var(--radius);background:var(--panel-2);margin-bottom:34px}
+.total-line .t-lbl{font-size:.86rem;color:var(--tx-2)}
+.total-line .t-val{font-size:1.6rem;font-weight:750;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+
+/* Cenários de contratação */
+.scen-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.scen{position:relative;padding:30px;border:1px solid var(--stroke);border-radius:var(--radius);background:var(--panel);overflow:hidden}
+.scen.reco{border-color:rgba(37,230,154,.35);background:linear-gradient(160deg,rgba(37,230,154,.07),rgba(41,194,245,.03))}
+.scen .s-flag{position:absolute;top:0;right:0;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:#04120c;background:var(--grad);padding:6px 14px;border-radius:0 0 0 12px}
+.scen h3{margin-bottom:6px;padding-right:110px}
+.scen .s-sub{font-size:.88rem;color:var(--tx-3);margin-bottom:22px}
+.tl{display:flex;flex-direction:column;gap:0}
+.tl-step{display:flex;gap:14px;padding-bottom:18px;position:relative}
+.tl-step:last-child{padding-bottom:0}
+.tl-step::before{content:"";position:absolute;left:7px;top:20px;bottom:0;width:1px;background:var(--stroke-2)}
+.tl-step:last-child::before{display:none}
+.tl-dot{width:15px;height:15px;border-radius:50%;flex-shrink:0;margin-top:3px;border:2px solid var(--g-cyan2);background:var(--bg);z-index:1}
+.tl-step.is-rec .tl-dot{border-color:var(--g-blue)}
+.tl-body .tl-when{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx-4);margin-bottom:3px}
+.tl-body .tl-what{font-size:.95rem;color:var(--tx);font-weight:600;margin-bottom:2px}
+.tl-body .tl-how{font-size:.84rem;color:var(--tx-3)}
+.tl-body .tl-how b{color:var(--tx-2);font-variant-numeric:tabular-nums}
 
 /* Campaign highlight */
 .campaign{border-radius:28px;padding:52px;position:relative;overflow:hidden;border:1px solid var(--stroke-2);
@@ -326,13 +387,18 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 .reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}
 
 /* ---------- Responsive ---------- */
-@media(max-width:900px){
+@media(max-width:1180px){
   .nav-links{display:none}
   .menu-toggle{display:flex}
-  .nav-links.mobile-open{display:flex;position:absolute;top:66px;left:16px;right:16px;flex-direction:column;background:rgba(9,12,22,.97);backdrop-filter:blur(16px);border:1px solid var(--stroke);border-radius:16px;padding:12px}
+  .nav-links.mobile-open{display:flex;position:absolute;top:66px;left:16px;right:16px;flex-direction:column;background:rgba(9,12,22,.97);backdrop-filter:blur(16px);border:1px solid var(--stroke);border-radius:16px;padding:12px;gap:2px}
+  .nav-links.mobile-open a{font-size:.9rem}
+}
+@media(max-width:900px){
   .nav-links.mobile-open a{padding:12px}
   .g3,.g4,.eco,.stat-row,.impact-grid{grid-template-columns:repeat(2,1fr)}
   .steps{grid-template-columns:repeat(2,1fr)}
+  .price-grid{grid-template-columns:repeat(2,1fr)}
+  .scen-grid{grid-template-columns:1fr}
   .vs{grid-template-columns:1fr}
   .vs .arrow{transform:rotate(90deg);justify-self:center}
   .eco .core{grid-column:auto}
@@ -342,7 +408,10 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 }
 @media(max-width:560px){
   section{padding:70px 0}
-  .g2,.g3,.g4,.eco,.stat-row,.impact-grid,.deliv-grid,.steps{grid-template-columns:1fr}
+  .g2,.g3,.g4,.eco,.stat-row,.impact-grid,.deliv-grid,.steps,.price-grid{grid-template-columns:1fr}
+  .scen h3{padding-right:0}
+  .scen .s-flag{position:static;display:inline-block;border-radius:100px;margin-bottom:12px}
+  .price.wide{flex-direction:column;align-items:flex-start}
   .wrap,.topbar-inner,.foot-inner{padding-left:18px;padding-right:18px}
   .pillar-head{padding:20px}
   .pillar-body-inner{padding-left:20px;padding-right:20px}
@@ -400,6 +469,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
       <a href="#pilares">Pilares</a>
       <a href="#roadmap">Roadmap</a>
       <a href="#entregas">Entregas</a>
+      <a href="#investimento">Investimento</a>
       <a href="#proximos">Próximos passos</a>
     </nav>
     <div style="display:flex;gap:10px;align-items:center">
@@ -446,7 +516,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
       <a href="#visao" class="btn btn-primary">Ver a estratégia
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
-      <a href="#entregas" class="btn btn-ghost">Escopo e entregas</a>
+      <a href="#investimento" class="btn btn-ghost">Escopo e investimento</a>
     </div>
     <div class="chips reveal d3">
       <span class="chip"><b>Logística B2B</b> · produtos acabados e distribuição</span>
@@ -459,7 +529,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
         Proposta desenvolvida pela ARW Agência
       </span>
       <span>·</span>
-      <span>Documento estratégico — valores, prazos e condições comerciais a definir</span>
+      <span>Proposta comercial — valores e condições de pagamento na seção Investimento</span>
     </div>
   </div>
 </section>
@@ -665,7 +735,14 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     <div class="sec-intro reveal">
       <div class="eyebrow"><span class="dot"></span> 07 · Escopo estratégico</div>
       <h2>Nove pilares, um projeto integrado.</h2>
-      <p>Toque em cada pilar para ver as entregas. As quantidades finais de aplicações, artes e volumes são sugestões de escopo, a serem validadas comercialmente.</p>
+      <p>Toque em cada pilar para ver as entregas. Cada item está marcado com a sua categoria comercial — as quatro se mantêm com o mesmo significado em toda a proposta.</p>
+    </div>
+
+    <div class="legend reveal">
+      <div class="lg-item"><span class="lg-dot avl"></span><span class="lg-tx"><b>Avulso</b><span>Projeto fechado, contratado uma vez, com preço próprio</span></span></div>
+      <div class="lg-item"><span class="lg-dot imp"></span><span class="lg-tx"><b>Implantação</b><span>Setup técnico inicial, sem cobrança separada</span></span></div>
+      <div class="lg-item"><span class="lg-dot rec"></span><span class="lg-tx"><b>Recorrente</b><span>Coberto pela mensalidade da agência</span></span></div>
+      <div class="lg-item"><span class="lg-dot opt"></span><span class="lg-tx"><b>Opcional</b><span>Sob demanda, orçado à parte quando surgir</span></span></div>
     </div>
 
     <!-- P1 -->
@@ -711,7 +788,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
             <p class="small muted" style="margin-top:12px">A quantidade final de aplicações é definida no escopo comercial.</p>
           </div>
         </div>
-        <div style="margin-top:20px"><span class="badge b-point">● Projeto pontual (implantação)</span></div>
+        <div style="margin-top:20px"><span class="badge b-avl">● Avulso — <span class="pv">R$ 5.500</span></span></div>
       </div></div>
     </div>
 
@@ -725,6 +802,10 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
       </div>
       <div class="pillar-body"><div class="pillar-body-inner">
         <p class="muted">A landing page é a primeira estrutura de conversão — recebe as campanhas e gera contatos. O site completo é a evolução natural na sequência.</p>
+        <div class="note" style="margin-top:18px">
+          <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          <span>A landing page <b>depende do rebranding</b>: ela só é executada depois que posicionamento, mensagens e identidade visual estiverem definidos. Sem essa base, a página não teria o que comunicar.</span>
+        </div>
         <div class="cols">
           <div>
             <h4>Landing page inicial</h4>
@@ -756,7 +837,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
             </ul>
           </div>
         </div>
-        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-point">● Setup pontual</span><span class="badge b-rec">● Atualizações recorrentes</span></div>
+        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-avl">● Avulso — Landing page <span class="pv">R$ 4.500</span></span><span class="badge b-imp">● Implantação — configuração técnica</span><span class="badge b-rec">● Recorrente — atualizações</span><span class="badge b-opt">● Opcional — site institucional completo</span></div>
       </div></div>
     </div>
 
@@ -802,7 +883,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
           <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           <span>Sem promessa de posição garantida no Google. “Perfil da Empresa no Google” e “Google Ads” são tratados como frentes distintas — a otimização do perfil não é uma “campanha”.</span>
         </div>
-        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-point">● Organização inicial</span><span class="badge b-rec">● Gestão recorrente</span></div>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-imp">● Implantação — auditoria e organização inicial</span><span class="badge b-rec">● Recorrente — gestão e monitoramento</span></div>
       </div></div>
     </div>
 
@@ -847,7 +928,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
           <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           <span>A <b>verba de mídia</b> é um investimento separado, pago diretamente às plataformas, e não se confunde com o fee da agência. Não prometemos quantidade específica de leads.</span>
         </div>
-        <div style="margin-top:16px"><span class="badge b-rec">● Serviço recorrente + verba de mídia à parte</span></div>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-imp">● Implantação — configuração das contas</span><span class="badge b-rec">● Recorrente — gestão das campanhas</span><span class="badge b-opt">● Opcional — verba de mídia</span></div>
       </div></div>
     </div>
 
@@ -891,7 +972,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
             <p class="small muted" style="margin-top:10px">Volume inspirado em projeto semelhante — sugestão, não contratação automática.</p>
           </div>
         </div>
-        <div style="margin-top:20px"><span class="badge b-rec">● Serviço recorrente</span></div>
+        <div style="margin-top:20px"><span class="badge b-rec">● Recorrente — incluído na mensalidade</span></div>
       </div></div>
     </div>
 
@@ -935,7 +1016,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
           <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
           <span>Deslocamento, locação, atores, drones, equipamentos especiais, alimentação e hospedagem podem ser orçados à parte. A diária pode ser cobrada separadamente do contrato mensal.</span>
         </div>
-        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-point">● Diária pontual</span><span class="badge b-opt">● Custos de produção à parte</span></div>
+        <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-avl">● Avulso — <span class="pv">R$ 5.000</span></span><span class="badge b-opt">● Opcional — deslocamento, drone, locação</span></div>
       </div></div>
     </div>
 
@@ -949,9 +1030,9 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
       </div>
       <div class="pillar-body"><div class="pillar-body-inner">
         <div class="campaign" style="margin-top:8px">
-          <div class="eyebrow" style="margin-bottom:16px"><span class="dot"></span> Destaque do projeto</div>
+          <div class="eyebrow" style="margin-bottom:16px"><span class="dot"></span> Incluída na mensalidade — 1 campanha por ano</div>
           <h3 style="font-size:1.6rem;margin-bottom:12px">Materializar a nova Fitlog e criar lembrança de marca.</h3>
-          <p style="color:var(--tx-2);max-width:620px">Uma campanha publicitária institucional — com conceito, mote, assinatura, roteiro, direção criativa e visual — que apresenta a nova Fitlog ao mercado e demonstra sua capacidade de conectar marcas e pessoas.</p>
+          <p style="color:var(--tx-2);max-width:620px">Uma campanha publicitária institucional — com conceito, mote, assinatura, roteiro, direção criativa e visual — que apresenta a nova Fitlog ao mercado e demonstra sua capacidade de conectar marcas e pessoas. <b style="color:var(--tx)">O contrato recorrente contempla uma campanha publicitária completa por ano</b>, sem custo adicional de criação.</p>
           <div class="grid g3" style="margin-top:28px;gap:16px">
             <div class="card" style="background:rgba(255,255,255,.05)">
               <h4 style="font-size:.98rem;margin-bottom:8px">Filme principal</h4>
@@ -973,7 +1054,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
             <span>YouTube Ads</span><span>Vídeo do site</span><span>Artes estáticas</span><span>Carrosséis</span><span>Banners</span>
           </div>
         </div>
-        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-point">● Projeto publicitário pontual</span><span class="badge b-opt">● Produção (atores, locação, trilha) à parte</span></div>
+        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-rec">● Recorrente — 1 campanha por ano inclusa</span><span class="badge b-opt">● Opcional — atores, locação, drone, trilha licenciada</span></div>
       </div></div>
     </div>
 
@@ -1014,7 +1095,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
             <p class="small muted" style="margin-top:10px">Quantidade de artigos aberta para definição comercial.</p>
           </div>
         </div>
-        <div style="margin-top:20px"><span class="badge b-rec">● Recorrente (etapa futura)</span></div>
+        <div style="margin-top:20px"><span class="badge b-rec">● Recorrente — etapa futura, dentro da mensalidade</span></div>
       </div></div>
     </div>
 
@@ -1049,7 +1130,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
             <p class="muted small">Uma quantidade definida de artes mensais em período inicial; novas demandas contratadas de forma avulsa ou renegociadas. Estruturado como possibilidade, sem fixar quantidade sem confirmação.</p>
           </div>
         </div>
-        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-point">● Pacote inicial pontual</span><span class="badge b-rec">● Artes mensais recorrentes</span><span class="badge b-opt">● Grandes impressões à parte</span></div>
+        <div style="margin-top:20px;display:flex;gap:8px;flex-wrap:wrap"><span class="badge b-rec">● Recorrente — artes mensais</span><span class="badge b-opt">● Opcional — impressos, brindes, grandes formatos</span></div>
       </div></div>
     </div>
 
@@ -1079,49 +1160,56 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     <div class="sec-intro reveal">
       <div class="eyebrow"><span class="dot"></span> 09 · Roadmap</div>
       <h2>Sete fases, na ordem que faz sentido.</h2>
-      <p>Um caminho estruturado do diagnóstico ao crescimento. Algumas etapas acontecem em paralelo — o roadmap mostra a lógica, não uma sequência rígida.</p>
+      <p>Um caminho estruturado do diagnóstico ao crescimento. As fases 1 a 4 concentram os projetos avulsos — a base. Da fase 5 em diante, tudo acontece dentro do trabalho recorrente.</p>
     </div>
     <div class="road reveal">
       <div class="phase">
         <div class="dot"></div>
         <div class="ph-num">Fase 1</div>
         <h3>Diagnóstico e fundação</h3>
+        <div class="tag-row" style="margin-bottom:8px"><span class="badge b-avl">● Avulso</span></div>
         <div class="tag-row"><span class="tag">Imersão</span><span class="tag">Análise de mercado</span><span class="tag">Concorrência</span><span class="tag">Diagnóstico</span><span class="tag">Posicionamento</span><span class="tag">Objetivos</span></div>
       </div>
       <div class="phase">
         <div class="dot"></div>
         <div class="ph-num">Fase 2</div>
         <h3>Rebranding e sistema de marca</h3>
+        <div class="tag-row" style="margin-bottom:8px"><span class="badge b-avl">● Avulso — R$ 5.500</span></div>
         <div class="tag-row"><span class="tag">Identidade</span><span class="tag">Tom de voz</span><span class="tag">Mensagens</span><span class="tag">Manual</span><span class="tag">Aplicações prioritárias</span></div>
       </div>
       <div class="phase">
         <div class="dot"></div>
         <div class="ph-num">Fase 3</div>
         <h3>Estrutura digital</h3>
+        <div class="tag-row" style="margin-bottom:8px"><span class="badge b-avl">● Avulso — Landing page R$ 4.500</span><span class="badge b-imp">● Implantação — mensuração</span></div>
         <div class="tag-row"><span class="tag">Landing page</span><span class="tag">Perfil no Google</span><span class="tag">Analytics</span><span class="tag">Tag Manager</span><span class="tag">Conversões</span><span class="tag">Google Ads</span><span class="tag">Reportei</span></div>
       </div>
       <div class="phase">
         <div class="dot"></div>
         <div class="ph-num">Fase 4</div>
         <h3>Conteúdo e presença</h3>
+        <div class="tag-row" style="margin-bottom:8px"><span class="badge b-avl">● Avulso — Captação R$ 5.000</span><span class="badge b-rec">● Recorrente — conteúdo</span></div>
         <div class="tag-row"><span class="tag">Banco de imagens</span><span class="tag">LinkedIn</span><span class="tag">Instagram</span><span class="tag">Conteúdo</span><span class="tag">Vídeos</span><span class="tag">Materiais institucionais</span></div>
       </div>
       <div class="phase">
         <div class="dot"></div>
         <div class="ph-num">Fase 5</div>
         <h3>Campanha de lançamento da marca</h3>
+        <div class="tag-row" style="margin-bottom:8px"><span class="badge b-rec">● Recorrente — campanha anual inclusa</span></div>
         <div class="tag-row"><span class="tag">Conceito</span><span class="tag">Mote</span><span class="tag">Filme</span><span class="tag">Desdobramentos</span><span class="tag">Mídia</span><span class="tag">Distribuição</span></div>
       </div>
       <div class="phase">
         <div class="dot"></div>
         <div class="ph-num">Fase 6</div>
         <h3>Aquisição e crescimento</h3>
+        <div class="tag-row" style="margin-bottom:8px"><span class="badge b-rec">● Recorrente</span></div>
         <div class="tag-row"><span class="tag">Campanhas comerciais</span><span class="tag">Geração de leads</span><span class="tag">SEO</span><span class="tag">Blog</span><span class="tag">LPs por serviço</span><span class="tag">Remarketing</span></div>
       </div>
       <div class="phase">
         <div class="dot"></div>
         <div class="ph-num">Fase 7</div>
         <h3>Consolidação</h3>
+        <div class="tag-row" style="margin-bottom:8px"><span class="badge b-rec">● Recorrente</span></div>
         <div class="tag-row"><span class="tag">Análise de resultados</span><span class="tag">Ajustes</span><span class="tag">Novas campanhas</span><span class="tag">Expansão de canais</span><span class="tag">Evolução contínua</span></div>
       </div>
     </div>
@@ -1133,68 +1221,195 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
   <div class="wrap">
     <div class="sec-intro reveal">
       <div class="eyebrow"><span class="dot"></span> 10 · Entregas</div>
-      <h2>O que é implantação, o que é mensal, o que é opcional.</h2>
-      <p>Separação clara entre o investimento pontual de implantação, o fee recorrente e os itens orçados à parte.</p>
+      <h2>Quatro categorias, sem zona cinzenta.</h2>
+      <p>Cada entrega pertence a uma — e apenas uma — destas categorias. Avulso é avulso, implantação é implantação, recorrente é recorrente e opcional é opcional.</p>
     </div>
     <div class="tabs reveal">
-      <button class="tab active" onclick="showTab(event,'imp')">Implantação <span class="cnt">pontual</span></button>
+      <button class="tab active" onclick="showTab(event,'avl')">Avulso <span class="cnt">projeto fechado</span></button>
+      <button class="tab" onclick="showTab(event,'imp')">Implantação <span class="cnt">setup incluído</span></button>
       <button class="tab" onclick="showTab(event,'rec')">Recorrente <span class="cnt">mensal</span></button>
       <button class="tab" onclick="showTab(event,'opt')">Opcional <span class="cnt">à parte</span></button>
     </div>
 
-    <div class="tabpane active" id="imp">
+    <div class="tabpane active" id="avl">
+      <p class="muted small" style="margin-bottom:16px">Projetos com preço fechado, contratados uma única vez. São a fundação do trabalho — sem eles, o recorrente não tem base para operar.</p>
       <div class="deliv-grid">
         <div class="deliv"><span class="d-dot"></span>Diagnóstico e estratégia de marca</div>
-        <div class="deliv"><span class="d-dot"></span>Rebranding e identidade visual</div>
+        <div class="deliv"><span class="d-dot"></span>Rebranding e sistema de identidade visual</div>
         <div class="deliv"><span class="d-dot"></span>Manual da marca</div>
-        <div class="deliv"><span class="d-dot"></span>Landing page inicial</div>
-        <div class="deliv"><span class="d-dot"></span>Site institucional</div>
-        <div class="deliv"><span class="d-dot"></span>Setup de Analytics e Tag Manager</div>
+        <div class="deliv"><span class="d-dot"></span>Landing page inicial <span class="muted">(requer rebranding)</span></div>
+        <div class="deliv"><span class="d-dot"></span>Diária de captação — banco de imagens</div>
+      </div>
+    </div>
+
+    <div class="tabpane" id="imp">
+      <p class="muted small" style="margin-bottom:16px">Configuração técnica executada no início do projeto. Não é cobrada à parte — faz parte da entrega dos avulsos e do início do recorrente.</p>
+      <div class="deliv-grid">
+        <div class="deliv"><span class="d-dot"></span>Google Analytics 4 e Tag Manager</div>
+        <div class="deliv"><span class="d-dot"></span>Eventos de conversão, pixels e tags</div>
+        <div class="deliv"><span class="d-dot"></span>Integração de formulários e monitoramento de WhatsApp</div>
+        <div class="deliv"><span class="d-dot"></span>Search Console, domínio e SEO técnico básico</div>
         <div class="deliv"><span class="d-dot"></span>Configuração das contas de anúncios</div>
-        <div class="deliv"><span class="d-dot"></span>Organização do Perfil no Google</div>
-        <div class="deliv"><span class="d-dot"></span>Diária de banco de imagens</div>
-        <div class="deliv"><span class="d-dot"></span>Campanha publicitária institucional</div>
-        <div class="deliv"><span class="d-dot"></span>Filme principal</div>
-        <div class="deliv"><span class="d-dot"></span>Materiais institucionais iniciais</div>
+        <div class="deliv"><span class="d-dot"></span>Auditoria e organização do Perfil no Google</div>
+        <div class="deliv"><span class="d-dot"></span>Dashboard no Reportei</div>
       </div>
     </div>
 
     <div class="tabpane" id="rec">
+      <p class="muted small" style="margin-bottom:16px">Tudo o que está coberto pela mensalidade da agência — incluindo <b>uma campanha publicitária institucional por ano</b>.</p>
       <div class="deliv-grid">
+        <div class="deliv"><span class="d-dot"></span><b>1 campanha publicitária institucional por ano</b></div>
         <div class="deliv"><span class="d-dot"></span>Gestão de tráfego pago e otimização do Google Ads</div>
         <div class="deliv"><span class="d-dot"></span>Gestão do Perfil no Google</div>
-        <div class="deliv"><span class="d-dot"></span>Monitoramento de reputação</div>
-        <div class="deliv"><span class="d-dot"></span>Redes sociais e conteúdo para LinkedIn</div>
+        <div class="deliv"><span class="d-dot"></span>Monitoramento e gestão de reputação</div>
+        <div class="deliv"><span class="d-dot"></span>Conteúdo e gestão do LinkedIn</div>
         <div class="deliv"><span class="d-dot"></span>Adaptação para Instagram</div>
-        <div class="deliv"><span class="d-dot"></span>Vídeos recorrentes</div>
+        <div class="deliv"><span class="d-dot"></span>Vídeos curtos recorrentes</div>
         <div class="deliv"><span class="d-dot"></span>Design e artes mensais</div>
-        <div class="deliv"><span class="d-dot"></span>Relatórios e dashboard</div>
-        <div class="deliv"><span class="d-dot"></span>Reuniões de acompanhamento</div>
-        <div class="deliv"><span class="d-dot"></span>Atualizações da landing page e do site</div>
-        <div class="deliv"><span class="d-dot"></span>Conteúdo de blog</div>
+        <div class="deliv"><span class="d-dot"></span>Relatórios, dashboard e reuniões</div>
+        <div class="deliv"><span class="d-dot"></span>Atualizações da landing page</div>
+        <div class="deliv"><span class="d-dot"></span>Conteúdo de blog e SEO</div>
         <div class="deliv"><span class="d-dot"></span>E-mail marketing e evolução estratégica</div>
       </div>
     </div>
 
     <div class="tabpane" id="opt">
+      <p class="muted small" style="margin-bottom:16px">Itens sob demanda, orçados individualmente no momento em que forem necessários. Nenhum deles está embutido nos valores desta proposta.</p>
       <div class="deliv-grid">
+        <div class="deliv"><span class="d-dot"></span>Site institucional completo</div>
         <div class="deliv"><span class="d-dot"></span>Produções audiovisuais adicionais</div>
         <div class="deliv"><span class="d-dot"></span>Atores e locação</div>
         <div class="deliv"><span class="d-dot"></span>Drones e trilhas licenciadas</div>
         <div class="deliv"><span class="d-dot"></span>Locução</div>
-        <div class="deliv"><span class="d-dot"></span>Grandes impressões</div>
+        <div class="deliv"><span class="d-dot"></span>Materiais impressos e grandes formatos</div>
         <div class="deliv"><span class="d-dot"></span>Desenvolvimento de sistemas</div>
         <div class="deliv"><span class="d-dot"></span>Fotografia adicional e cobertura de eventos</div>
-        <div class="deliv"><span class="d-dot"></span>Materiais impressos</div>
         <div class="deliv"><span class="d-dot"></span>Consultoria jurídica</div>
         <div class="deliv"><span class="d-dot"></span>Verba de mídia</div>
         <div class="deliv"><span class="d-dot"></span>Deslocamento e hospedagem</div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ============ INVESTIMENTO ============ -->
+<section id="investimento">
+  <div class="wrap">
+    <div class="sec-intro reveal">
+      <div class="eyebrow"><span class="dot"></span> 11 · Investimento</div>
+      <h2>Os valores, na mesma lógica das entregas.</h2>
+      <p>Três projetos avulsos formam a base. A partir dela, a mensalidade mantém a marca viva, ativa e medida — com uma campanha publicitária por ano inclusa.</p>
+    </div>
+
+    <div class="price-grid reveal">
+      <div class="price avl">
+        <div class="p-cat">Avulso</div>
+        <h3>Rebranding completo</h3>
+        <div class="p-desc">Diagnóstico, posicionamento, proposta de valor, tom de voz, sistema de identidade visual e manual da marca.</div>
+        <div class="p-val">R$ 5.500</div>
+        <div class="p-note">Pagamento único · ponto de partida obrigatório</div>
+      </div>
+      <div class="price avl">
+        <div class="p-cat">Avulso</div>
+        <h3>Landing page</h3>
+        <div class="p-desc">Primeira estrutura de conversão, preparada para receber as campanhas e gerar contatos comerciais.</div>
+        <div class="p-val">R$ 4.500</div>
+        <div class="dep">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+          Só é executada com o rebranding contratado
+        </div>
+      </div>
+      <div class="price avl">
+        <div class="p-cat">Avulso</div>
+        <h3>Captação de imagens</h3>
+        <div class="p-desc">Diária completa de captação na operação: estrutura, frota, equipe e processos. Gera o banco de fotos e vídeos.</div>
+        <div class="p-val">R$ 5.000</div>
+        <div class="p-note">Deslocamento, drone e locação orçados à parte</div>
+      </div>
+
+      <div class="price rec wide">
+        <div class="p-left">
+          <div class="p-cat">Recorrente</div>
+          <h3>Trabalho mensal da agência</h3>
+          <div class="p-desc">Tráfego pago, Perfil no Google e reputação, LinkedIn e Instagram, conteúdo, vídeos, design, blog, relatórios e reuniões — mais <b style="color:var(--tx)">1 campanha publicitária institucional por ano</b>.</div>
+        </div>
+        <div>
+          <div class="p-val">R$ 7.500<small> /mês</small></div>
+          <div class="p-note">Verba de mídia paga à parte, direto às plataformas</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="total-line reveal">
+      <span class="t-lbl">Total dos três projetos avulsos <span class="muted">(rebranding + landing page + captação)</span></span>
+      <span class="t-val grad-text">R$ 15.000</span>
+    </div>
+
+    <div class="sec-intro reveal" style="margin-bottom:26px">
+      <h3 style="font-size:1.35rem;margin-bottom:8px">Duas formas de começar</h3>
+      <p class="small">A diferença entre elas é apenas o momento de iniciar a mensalidade — e, com isso, o número de parcelas dos avulsos.</p>
+    </div>
+
+    <div class="scen-grid">
+      <div class="scen reco reveal">
+        <div class="s-flag">Nossa sugestão</div>
+        <h3>Fundação primeiro</h3>
+        <div class="s-sub">Os avulsos nos primeiros 60 dias. O recorrente começa depois, com a base pronta.</div>
+        <div class="tl">
+          <div class="tl-step">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-when">Dias 1–60</div>
+              <div class="tl-what">Rebranding, landing page e captação</div>
+              <div class="tl-how">R$ 15.000 em <b>até 4x de R$ 3.750</b></div>
+            </div>
+          </div>
+          <div class="tl-step is-rec">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-when">A partir do 3º mês</div>
+              <div class="tl-what">Início do trabalho mensal</div>
+              <div class="tl-how"><b>R$ 7.500/mês</b> — com marca, página e imagens já prontas</div>
+            </div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:22px">
+          <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+          <span>Por que sugerimos assim: o recorrente rende muito mais quando já existe marca definida, página para converter e banco de imagens para alimentar o conteúdo.</span>
+        </div>
+      </div>
+
+      <div class="scen reveal d1">
+        <h3>Tudo em paralelo</h3>
+        <div class="s-sub">Avulsos e mensalidade começam juntos, com os projetos diluídos em mais parcelas.</div>
+        <div class="tl">
+          <div class="tl-step">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-when">Mês 1</div>
+              <div class="tl-what">Avulsos e recorrente iniciam juntos</div>
+              <div class="tl-how">R$ 15.000 em <b>até 12x de R$ 1.250</b></div>
+            </div>
+          </div>
+          <div class="tl-step is-rec">
+            <span class="tl-dot"></span>
+            <div class="tl-body">
+              <div class="tl-when">Mês 1 em diante</div>
+              <div class="tl-what">Trabalho mensal desde o primeiro dia</div>
+              <div class="tl-how"><b>R$ 7.500/mês</b> + parcela dos avulsos</div>
+            </div>
+          </div>
+        </div>
+        <div class="note" style="margin-top:22px">
+          <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+          <span>O parcelamento em 12x é condicionado à contratação simultânea do trabalho mensal.</span>
+        </div>
+      </div>
+    </div>
 
     <div class="note reveal" style="margin-top:26px">
       <svg class="warn" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
-      <span><b>Três investimentos distintos:</b> o <b>fee da agência</b> (implantação + mensal), a <b>verba de mídia</b> (paga às plataformas) e os <b>custos de produção</b> (diárias, locações, equipamentos). Valores, prazos e equipe: <span class="ph">a definir</span>.</span>
+      <span><b>O que não está incluído nos valores acima:</b> a <b>verba de mídia</b> (paga diretamente às plataformas) e os <b>custos de produção e itens opcionais</b> — deslocamento, locação, atores, drones, trilhas licenciadas, impressos e afins, sempre orçados à parte antes de qualquer execução.</span>
     </div>
   </div>
 </section>
@@ -1203,7 +1418,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="impactos">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 11 · Impactos esperados</div>
+      <div class="eyebrow"><span class="dot"></span> 12 · Impactos esperados</div>
       <h2>O que muda quando a marca acompanha a operação.</h2>
       <p>Resultados qualitativos que sustentam o crescimento comercial no médio e longo prazo.</p>
     </div>
@@ -1226,14 +1441,14 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
 <section id="proximos">
   <div class="wrap">
     <div class="sec-intro reveal">
-      <div class="eyebrow"><span class="dot"></span> 12 · Próximos passos</div>
+      <div class="eyebrow"><span class="dot"></span> 13 · Próximos passos</div>
       <h2>Do plano à execução.</h2>
       <p>Um caminho direto para tirar o projeto do papel.</p>
     </div>
     <div class="steps reveal">
       <div class="step"><h4>Validação do escopo</h4><p>Alinhamento das frentes e prioridades desta proposta.</p></div>
       <div class="step"><h4>Definição de prioridades</h4><p>O que entra na primeira onda de implantação.</p></div>
-      <div class="step"><h4>Aprovação comercial</h4><p>Valores, prazos e condições comerciais a definir.</p></div>
+      <div class="step"><h4>Aprovação comercial</h4><p>Escolha do cenário de contratação e do parcelamento.</p></div>
       <div class="step"><h4>Reunião de imersão</h4><p>Início do diagnóstico com o time da Fitlog.</p></div>
       <div class="step"><h4>Início do projeto</h4><p>Execução da Fase 1 e do cronograma acordado.</p></div>
     </div>
@@ -1260,7 +1475,7 @@ footer .fnote{font-size:.8rem;color:var(--tx-4)}
     <div class="brand">
       <div>ARW Agência<small>Proposta estratégica · Fitlog</small></div>
     </div>
-    <div class="fnote">Documento estratégico · valores, prazos e condições comerciais a definir</div>
+    <div class="fnote">Proposta comercial · avulsos R$ 15.000 · mensalidade R$ 7.500 · verba de mídia e produção à parte</div>
   </div>
 </footer>
 
